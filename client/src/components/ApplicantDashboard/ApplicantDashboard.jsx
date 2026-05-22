@@ -33,13 +33,25 @@ const ApplicantDashboard = () => {
     return unsubscribe;
   }, [navigate]);
 
-  const normalizeFile = (file) => ({
-    id: file.id,
-    name: file.file_name || file.name,
-    filePath: file.file_path || file.filePath,
-    file_size: file.file_size || file.size || "Saved",
-    verificationStatus: file.verification_status || file.verificationStatus || "Pending",
-  });
+  const normalizeFile = (file) => {
+    const rawFilePath = file.file_path || file.filePath || "";
+    const normalizedPath = rawFilePath.replace(/\\/g, "/");
+    const uploadsIndex = normalizedPath.indexOf("/uploads/");
+
+    const filePath = uploadsIndex >= 0
+      ? normalizedPath.slice(uploadsIndex + 1)
+      : normalizedPath.startsWith("uploads/")
+      ? normalizedPath
+      : `uploads/${normalizedPath.split("/").pop()}`;
+
+    return {
+      id: file.id,
+      name: file.file_name || file.name,
+      filePath,
+      file_size: file.file_size || file.size || "Saved",
+      verificationStatus: file.verification_status || file.verificationStatus || "Pending",
+    };
+  };
 
   const fetchApplicants = async (email) => {
     try {

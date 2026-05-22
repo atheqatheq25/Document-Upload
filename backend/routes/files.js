@@ -18,11 +18,11 @@ router.post("/upload-file", upload.single("file"), async (req, res) => {
       return res.status(400).json({ error: "Document ID is required" });
     }
 
-    const normalizedPath = req.file.path.replace(/\\/g, "/");
+    const relativePath = `uploads/${req.file.filename}`;
 
     const result = await pool.query(
       `INSERT INTO uploaded_files (document_id, file_name, file_path, verification_status) VALUES ($1, $2, $3, $4) RETURNING *`,
-      [document_id, req.file.filename, normalizedPath, "Pending"]
+      [document_id, req.file.filename, relativePath, "Pending"]
     );
 
     res.status(201).json({
@@ -63,9 +63,14 @@ router.delete("/delete-file/:id", async (req, res) => {
 
     const file = fileResult.rows[0];
     const filePath = file.file_path;
+    const absolutePath = filePath && path.isAbsolute(filePath)
+      ? filePath
+      : filePath
+      ? path.join(__dirname, "..", filePath)
+      : null;
 
-    if (filePath && fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
+    if (absolutePath && fs.existsSync(absolutePath)) {
+      fs.unlinkSync(absolutePath);
     }
 
     await pool.query(`DELETE FROM uploaded_files WHERE id = $1`, [id]);
