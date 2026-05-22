@@ -6,6 +6,7 @@ import api, { API_BASE_URL } from "../../api/apiClient";
 import ApplicantTabs from "./ApplicantTabs";
 import DocumentViewer from "./DocumentViewer";
 import { AddApplicantModal, AddDocumentModal } from "./Modals";
+import "./ApplicantDashboard.css";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 

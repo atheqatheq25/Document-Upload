@@ -2,6 +2,7 @@ import {
   FaCheck,
   FaTimes,
 } from "react-icons/fa";
+import "./Modals.css";
 
 export const AddApplicantModal = ({
   show,

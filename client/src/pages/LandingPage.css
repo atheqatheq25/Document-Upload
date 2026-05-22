@@ -1,0 +1,58 @@
+/* Landing page styles (light theme) */
+.landing-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, var(--bg), var(--soft));
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.landing-card {
+  width: 480px;
+  background: var(--card);
+  border-radius: 18px;
+  padding: 42px;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.landing-logo {
+  width: 90px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+}
+
+.landing-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.landing-subtitle {
+  color: var(--muted);
+  margin-bottom: 32px;
+  font-size: 15px;
+}
+
+.btn-wide {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary-dark);
+  margin-bottom: 14px;
+}
+
+.btn-secondary {
+  background: var(--muted);
+}

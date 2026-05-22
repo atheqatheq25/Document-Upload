@@ -1,4 +1,5 @@
 import { FaPlus, FaTrash, FaUpload, FaTimes, FaEye, FaDownload } from "react-icons/fa";
+import "./DocumentViewer.css";
 
 const formatFileSize = (size) => {
   if (!size || size === "Saved") return "Saved";

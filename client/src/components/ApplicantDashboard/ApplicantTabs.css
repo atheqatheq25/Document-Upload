@@ -1,0 +1,34 @@
+.applicant-tabs {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-left: 25px;
+}
+
+.applicant-tab {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 18px;
+  cursor: pointer;
+}
+
+.active-tab {
+  border-bottom: 2px solid var(--primary);
+}
+
+.applicant-name {
+  color: var(--primary-dark);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.delete-btn {
+  width: 60px;
+  height: 60px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  font-size: 18px;
+}

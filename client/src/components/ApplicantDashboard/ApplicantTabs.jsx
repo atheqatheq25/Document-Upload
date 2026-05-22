@@ -1,4 +1,5 @@
 import { FaTrash } from "react-icons/fa";
+import "./ApplicantTabs.css";
 
 const ApplicantTabs = ({
   applicants,

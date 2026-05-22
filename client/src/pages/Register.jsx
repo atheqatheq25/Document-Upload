@@ -1,47 +1,19 @@
-import React,
-{
-  useState,
-  useEffect,
-} from "react";
-
-import toast
-from "react-hot-toast";
-import {
-
-  createUserWithEmailAndPassword,
-
-} from "firebase/auth";
-
-import { auth }
-from "../firebase";
-
-import axios
-from "axios";
-import { API_BASE_URL }
-from "../api/apiClient";
-
-import { useNavigate }
-from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+import axios from "axios";
+import { API_BASE_URL } from "../api/apiClient";
+import { useNavigate } from "react-router-dom";
+import "./Register.css";
 
 const Register = () => {
+  const navigate = useNavigate();
 
-  const navigate =
-    useNavigate();
-
-  const [name, setName] =
-    useState("");
-
-  const [email, setEmail] =
-    useState("");
-
-  const [
-    password,
-    setPassword,
-  ] = useState("");
-  const [
-  loading,
-  setLoading,
-] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   // REDIRECT ON REFRESH
 
   useEffect(() => {
@@ -127,177 +99,40 @@ const Register = () => {
     };
 
   return (
-
-    <div
-      style={{
-
-        height: "100vh",
-
-        display: "flex",
-
-        justifyContent: "center",
-
-        alignItems: "center",
-
-        background:
-          "linear-gradient(to right, #f8fafc, #e2e8f0)",
-
-      }}
-    >
-
-      <div
-        style={{
-
-          width: "420px",
-
-          background: "white",
-
-          padding: "40px",
-
-          borderRadius: "20px",
-
-          boxShadow:
-            "0 10px 30px rgba(0,0,0,0.08)",
-
-        }}
-      >
-
-        <h2
-          style={{
-
-            textAlign: "center",
-
-            marginBottom: "30px",
-
-          }}
-        >
-
-          Register
-
-        </h2>
-
-        {/* NAME */}
+    <div className="auth-container">
+      <div className="auth-card">
+        <h2>Register</h2>
 
         <input
           type="text"
           placeholder="Enter Name"
           value={name}
-          onChange={(e) =>
-            setName(
-              e.target.value
-            )
-          }
-          style={{
-
-            width: "100%",
-
-            padding: "12px",
-
-            marginBottom: "18px",
-
-            borderRadius: "10px",
-
-            border:
-              "1px solid #dcdcdc",
-
-          }}
+          onChange={(e) => setName(e.target.value)}
+          className="auth-input"
         />
-
-        {/* EMAIL */}
 
         <input
           type="email"
           placeholder="Enter Email"
           value={email}
-          onChange={(e) =>
-            setEmail(
-              e.target.value
-            )
-          }
-          style={{
-
-            width: "100%",
-
-            padding: "12px",
-
-            marginBottom: "18px",
-
-            borderRadius: "10px",
-
-            border:
-              "1px solid #dcdcdc",
-
-          }}
+          onChange={(e) => setEmail(e.target.value)}
+          className="auth-input"
         />
-
-        {/* PASSWORD */}
 
         <input
           type="password"
           placeholder="Enter Password"
           value={password}
-          onChange={(e) =>
-            setPassword(
-              e.target.value
-            )
-          }
-          style={{
-
-            width: "100%",
-
-            padding: "12px",
-
-            marginBottom: "25px",
-
-            borderRadius: "10px",
-
-            border:
-              "1px solid #dcdcdc",
-
-          }}
+          onChange={(e) => setPassword(e.target.value)}
+          className="auth-input"
         />
 
-        {/* REGISTER */}
-
-        <button
-
-          onClick={
-            handleRegister
-          }
-
-          style={{
-
-            width: "100%",
-
-            padding: "13px",
-
-            border: "none",
-
-            borderRadius: "10px",
-
-            background: "#0f172a",
-
-            color: "white",
-
-            fontWeight: "600",
-
-            cursor: "pointer",
-
-          }}
-        >
-
-         {loading
-  ? "Registering..."
-  : "Register"} 
-
+        <button className="auth-button" onClick={handleRegister}>
+          {loading ? "Registering..." : "Register"}
         </button>
-
       </div>
-
     </div>
-
   );
-
 };
 
 export default Register;
