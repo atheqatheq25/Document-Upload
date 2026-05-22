@@ -1,0 +1,529 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #efefef;
+}
+
+.document-page {
+  width: 100%;
+  min-height: 100vh;
+  background: white;
+  padding: 0;
+  margin: 0;
+}
+
+.upload-card {
+  width: 100%;
+  min-height: 100vh;
+  background: white;
+  padding: 24px;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+}
+
+.page-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: #3d4b63;
+}
+
+.divider {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.add-btn,
+.nav-btn {
+  background-color: #3b82f6;
+  border: none;
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.add-btn:hover,
+.nav-btn:hover {
+  background-color: #2563eb;
+}
+
+.mt-5 {
+  margin-top: 70px !important;
+}
+
+/* MODAL OVERLAY */
+
+.custom-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* MODAL BOX */
+
+.custom-modal {
+  width: 600px;
+  background: white;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+/* TITLE */
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #24324a;
+}
+
+/* CLOSE BUTTON */
+
+.close-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #ececec;
+  font-size: 20px;
+  color: #4b5563;
+}
+
+/* INPUT */
+
+.input-label {
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: block;
+  color: #4b5563;
+}
+
+.applicant-input {
+  height: 55px;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+/* SAVE BUTTON */
+
+.save-btn {
+  background: #3b82f6;
+  color: white;
+  padding: 12px 28px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* CANCEL BUTTON */
+
+.cancel-btn {
+  background: #718096;
+  color: white;
+  padding: 12px 28px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* APPLICANT TABS ROW */
+
+.applicant-tabs {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-left: 25px;
+}
+
+/* SINGLE TAB */
+
+.applicant-tab {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 18px;
+  cursor: pointer;
+}
+
+/* ACTIVE TAB */
+
+.active-tab {
+  border-bottom: 2px solid #3b82f6;
+}
+
+/* NAME */
+
+.applicant-name {
+  color: #3b82f6;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* DELETE */
+
+.delete-btn {
+  width: 60px;
+  height: 60px;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+/* LINE */
+
+.active-line {
+  width: 100%;
+  height: 1px;
+  background: #d4d4d4;
+  margin-top: -2px;
+}
+
+/* EMPTY TEXT */
+
+.empty-doc-text {
+  margin-top: 40px;
+  margin-left: 25px;
+  font-size: 18px;
+  color: #4b5563;
+}
+
+/* ADD BUTTON */
+
+.add-document-btn {
+  margin-top: 35px;
+  margin-left: 25px;
+  background: #3b82f6;
+  color: white;
+  width: 230px;
+  height: 55px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* DOCUMENT AREA */
+
+.documents-container {
+  display: flex;
+  gap: 30px;
+  margin-top: 25px;
+  padding: 0 25px;
+}
+
+/* LEFT SIDE */
+
+.document-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* DOCUMENT ITEM ROW */
+
+.document-item-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* DOCUMENT BOX */
+
+.document-box {
+  width: 95px;
+  height: 100px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* DELETE BUTTON */
+
+.document-delete-btn {
+  width: 45px;
+  height: 45px;
+  border: none;
+  background: #ef4444;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.add-document-side-btn {
+  width: 120px;
+  height: 60px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* RIGHT SIDE */
+
+.upload-section {
+  flex: 1;
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.upload-top-bar {
+  padding: 20px;
+  border-bottom: 1px solid #d7d7d7;
+  display: flex;
+  gap: 18px;
+}
+
+/* BUTTONS */
+
+.choose-btn {
+  background: #3b82f6;
+  color: white;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.upload-btn {
+  background: #7aa5f5;
+  color: white;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cancel-upload-btn {
+  background: #718096;
+  color: white;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* DRAG AREA */
+
+.drag-drop-area {
+  min-height: 140px;
+  padding: 50px 20px;
+  font-size: 18px;
+  color: #4b5563;
+}
+
+@media (max-width: 768px) {
+
+  .page-title {
+    font-size: 34px;
+  }
+
+  .add-btn,
+  .nav-btn {
+    font-size: 18px;
+    padding: 10px 18px;
+  }
+
+}
+
+/* UPLOADED FILE ROW */
+
+.uploaded-file-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+}
+
+/* FILE NAME */
+
+.file-name {
+  font-size: 20px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+/* FILE DETAILS */
+
+.file-details {
+  font-size: 18px;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* PENDING BADGE */
+
+.pending-badge {
+  background: #f97316;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* REMOVE BUTTON */
+
+.remove-file-btn {
+  border: none;
+  background: transparent;
+  color: #ef4444;
+  font-size: 24px;
+}
+
+/* COMPLETED BADGE */
+
+.completed-badge {
+  background: #22c55e;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* FILE ACTION BUTTONS */
+
+.file-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* VIEW BUTTON */
+
+.view-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* DOWNLOAD BUTTON */
+
+.download-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #22c55e;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* COMPLETED BADGE */
+
+.completed-badge {
+  background: #22c55e;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* FILE ACTION BUTTONS */
+
+.file-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* VIEW BUTTON */
+
+.view-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* DOWNLOAD BUTTON */
+
+.download-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: #22c55e;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* DELETE FILE BUTTON */
+
+.remove-file-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: #ef4444;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* ACTIVE DOCUMENT */
+
+.active-document {
+  border: 3px solid #2563eb;
+}
+
+/* ACTIVE DOCUMENT */
+
+.active-document-box {
+  border: 3px solid #2563eb;
+  position: relative;
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
+  transform: scale(1.03);
+}
+
+/* CURRENT TAG */
+
+.active-indicator {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: #22c55e;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+/* CURRENT DOCUMENT TITLE */
+
+.current-document-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 20px;
+}
+
+/* CURRENT DOCUMENT NAME */
+
+.current-document-name {
+  color: #2563eb;
+  margin-left: 10px;
+}
