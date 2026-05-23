@@ -14,10 +14,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // REDIRECT ON REFRESH
+  // REDIRECT ON REFRESH AND IF ALREADY LOGGED IN
 
   useEffect(() => {
-
     const navigationEntries =
       performance.getEntriesByType(
         "navigation"
@@ -28,12 +27,20 @@ const Login = () => {
       navigationEntries[0].type ===
         "reload"
     ) {
-
-      navigate("/");
-
+      navigate("/", { replace: true });
+      return;
     }
 
-  }, []);
+    // Also check if user is already logged in
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        navigate("/dashboard", { replace: true });
+      }
+    });
+
+    return unsubscribe;
+
+  }, [navigate]);
 
   // LOGIN
 

@@ -14,7 +14,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  // REDIRECT ON REFRESH
+  // REDIRECT ON REFRESH AND IF ALREADY LOGGED IN
 
   useEffect(() => {
 
@@ -29,11 +29,21 @@ const Register = () => {
         "reload"
     ) {
 
-      navigate("/");
+      navigate("/", { replace: true });
+      return;
 
     }
 
-  }, []);
+    // Also check if user is already logged in
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        navigate("/dashboard", { replace: true });
+      }
+    });
+
+    return unsubscribe;
+
+  }, [navigate]);
 
   // REGISTER
 
