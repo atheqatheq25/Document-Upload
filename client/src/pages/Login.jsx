@@ -3,6 +3,8 @@ import toast from "react-hot-toast";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { API_BASE_URL } from "../api/apiClient";
 import "./Login.css";
 
 const Login = () => {
@@ -78,23 +80,24 @@ const Login = () => {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
 
-      await fetch(`${process.env.REACT_APP_API_URL || "http://127.0.0.1:5000"}/register-user`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      try {
+        await axios.post(`${API_BASE_URL}/register-user`, {
           name: user.displayName || "Google User",
           email: user.email,
           firebase_uid: user.uid,
-        }),
-      });
+        });
+      } catch (backendError) {
+        console.error("Backend error:", backendError);
+        // Continue even if backend registration fails (user might already exist)
+      }
 
       toast.success("✅ Login with Google Successful");
       setLoading(false);
       navigate("/dashboard");
     } catch (error) {
-      console.error(error);
+      console.error("Google login error:", error);
       setLoading(false);
-      toast.error("❌ Google Login Failed");
+      toast.error("❌ Google Login Failed: " + error.message);
     }
   };
 

@@ -116,9 +116,9 @@ const Register = () => {
       setLoading(false);
       navigate("/login");
     } catch (error) {
-      console.error(error);
+      console.error("Google signup error:", error);
       setLoading(false);
-      toast.error("❌ Google Registration Failed");
+      toast.error("❌ Google Registration Failed: " + (error.response?.data?.error || error.message));
     }
   };
 

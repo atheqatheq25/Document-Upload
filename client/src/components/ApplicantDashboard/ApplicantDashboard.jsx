@@ -351,12 +351,26 @@ const ApplicantDashboard = () => {
     window.open(`${API_BASE_URL}/${file.filePath}`, "_blank");
   };
 
-  const handleDownloadFile = (file) => {
+  const handleDownloadFile = async (file) => {
     if (!file.filePath) return;
-    const link = document.createElement("a");
-    link.href = `${API_BASE_URL}/${file.filePath}`;
-    link.download = file.name || "download";
-    link.click();
+    try {
+      const response = await fetch(`${API_BASE_URL}/${file.filePath}`);
+      if (!response.ok) throw new Error("Download failed");
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = file.name || "download";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+      toast.success("✅ File Downloaded Successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error("❌ Download Failed");
+    }
   };
 
   return (
