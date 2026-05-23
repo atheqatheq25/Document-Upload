@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 const ApplicantDashboard = () => {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
-  const mountedRef = useRef(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showDocumentModal, setShowDocumentModal] = useState(false);
@@ -24,31 +23,30 @@ const ApplicantDashboard = () => {
   const [currentDocumentId, setCurrentDocumentId] = useState(null);
 
   useEffect(() => {
-    mountedRef.current = true;
+    let isMounted = true;
     
-    if (!auth.currentUser?.email) {
-      navigate("/", { replace: true });
-      return;
-    }
-
-    fetchApplicants(auth.currentUser.email);
-
-    return () => {
-      mountedRef.current = false;
+    const checkAuth = async () => {
+      // Wait for Firebase to initialize
+      const unsubscribe = auth.onAuthStateChanged((user) => {
+        if (!isMounted) return;
+        
+        if (!user?.email) {
+          navigate("/", { replace: true });
+        } else {
+          fetchApplicants(user.email);
+        }
+      });
+      
+      return unsubscribe;
     };
-  }, [navigate]);
-
-  // Handle logout redirect
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (!mountedRef.current) return;
-      if (!user && applicants.length > 0) {
-        navigate("/", { replace: true });
-      }
+    
+    checkAuth().then((unsubscribe) => {
+      return () => {
+        isMounted = false;
+        if (unsubscribe) unsubscribe();
+      };
     });
-
-    return unsubscribe;
-  }, [navigate, applicants.length]);
+  }, [navigate]);
 
   const normalizeFile = (file) => {
     const rawFilePath = file.file_path || file.filePath || "";
@@ -71,11 +69,8 @@ const ApplicantDashboard = () => {
   };
 
   const fetchApplicants = async (email) => {
-    if (!mountedRef.current) return;
-    
     try {
       const response = await api.get(`/get-applicants/${email}`);
-      if (!mountedRef.current) return;
       
       const applicantRows = Array.isArray(response.data)
         ? response.data
@@ -83,16 +78,11 @@ const ApplicantDashboard = () => {
 
       const applicantsWithDocuments = await Promise.all(
         applicantRows.map(async (applicant) => {
-          if (!mountedRef.current) return null;
           const documentResponse = await api.get(`/get-documents/${applicant.id}`);
-          if (!mountedRef.current) return null;
           
           const formattedDocuments = await Promise.all(
             documentResponse.data.map(async (doc) => {
-              if (!mountedRef.current) return null;
               const fileResponse = await api.get(`/get-files/${doc.id}`);
-              if (!mountedRef.current) return null;
-              
               const uploadedFiles = fileResponse.data.map(normalizeFile);
               return {
                 id: doc.id,
@@ -106,14 +96,11 @@ const ApplicantDashboard = () => {
         })
       );
 
-      if (!mountedRef.current) return;
-      
       setApplicants(applicantsWithDocuments);
       if (!activeApplicantId && applicantsWithDocuments.length > 0) {
         setActiveApplicantId(applicantsWithDocuments[0].id);
       }
     } catch (error) {
-      if (!mountedRef.current) return;
       console.error(error);
       toast.error("❌ Unable to load applicants");
     }
@@ -125,15 +112,13 @@ const ApplicantDashboard = () => {
   );
 
   const handleLogout = async () => {
-    mountedRef.current = false;
     try {
       await signOut(auth);
       toast.success("✅ Logged Out Successfully");
+      navigate("/", { replace: true });
     } catch (error) {
       console.error(error);
       toast.error("❌ Logout Failed");
-    } finally {
-      navigate("/", { replace: true });
     }
   };
 

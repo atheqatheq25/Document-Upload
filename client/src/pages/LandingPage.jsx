@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 import "./LandingPage.css";
 
 const LandingPage = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let isMounted = true;
+    
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (!isMounted) return;
+      
+      if (user?.email) {
+        navigate("/dashboard", { replace: true });
+      }
+    });
+    
+    return () => {
+      isMounted = false;
+      unsubscribe();
+    };
+  }, [navigate]);
 
   return (
     <div className="landing-container">

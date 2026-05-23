@@ -14,32 +14,21 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // REDIRECT ON REFRESH AND IF ALREADY LOGGED IN
-
   useEffect(() => {
-    const navigationEntries =
-      performance.getEntriesByType(
-        "navigation"
-      );
-
-    if (
-      navigationEntries.length > 0 &&
-      navigationEntries[0].type ===
-        "reload"
-    ) {
-      navigate("/", { replace: true });
-      return;
-    }
-
-    // Also check if user is already logged in
+    let isMounted = true;
+    
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
+      if (!isMounted) return;
+      
+      if (user?.email) {
         navigate("/dashboard", { replace: true });
       }
     });
-
-    return unsubscribe;
-
+    
+    return () => {
+      isMounted = false;
+      unsubscribe();
+    };
   }, [navigate]);
 
   // LOGIN
@@ -119,6 +108,7 @@ const Login = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="auth-input"
+          autoComplete="new-email"
         />
 
         <input
@@ -127,6 +117,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="auth-input"
+          autoComplete="new-password"
         />
 
         <button className="auth-button" onClick={handleLogin}>
