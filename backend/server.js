@@ -13,9 +13,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Enhanced CORS configuration for Google authentication
-const allowedOrigins = (process.env.FRONTEND_ORIGINS || "http://localhost:3000,http://localhost:5173").split(",");
 app.use(cors({
-  origin: allowedOrigins,
+  origin: ["http://localhost:3000", "http://localhost:5173", "http://localhost:5174", "http://localhost:5175", "http://127.0.0.1:5000"],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
