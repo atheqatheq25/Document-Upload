@@ -136,7 +136,7 @@ const DocumentViewer = ({
 
                 {selectedDocument.selectedFile.length === 0 &&
                   selectedDocument.uploadedFiles.length === 0 && (
-                    <p>Drag and Drop files here.</p>
+                    <p>No files selected for upload.</p>
                   )}
               </div>
             </div>
