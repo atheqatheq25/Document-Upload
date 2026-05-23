@@ -22,7 +22,7 @@
   height: 100px;
   background: var(--soft);
   color: var(--text);
-  border-radius: 12px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,12 +30,22 @@
   padding: 10px;
   font-size: 14px;
   font-weight: 600;
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.document-box:hover {
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(107, 168, 224, 0.1);
+  transform: translateY(-2px);
 }
 
 .active-document-box {
-  box-shadow: 0 4px 14px rgba(59,130,246,0.12);
+  box-shadow: 0 4px 16px rgba(107, 168, 224, 0.2);
   border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--primary-dark);
 }
 
 .document-delete-btn {
@@ -44,8 +54,16 @@
   border: none;
   background: var(--danger);
   color: white;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(220, 139, 124, 0.2);
+}
+
+.document-delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 139, 124, 0.3);
 }
 
 .add-document-side-btn {
@@ -53,9 +71,18 @@
   height: 60px;
   background: var(--primary);
   color: white;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 18px;
   font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(107, 168, 224, 0.2);
+}
+
+.add-document-side-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 168, 224, 0.3);
 }
 
 .documents-right-area {
@@ -78,30 +105,53 @@
   border-bottom: 1px solid var(--border);
   display: flex;
   gap: 18px;
+  background: var(--soft);
+}
+
+.choose-btn,
+.upload-btn,
+.cancel-upload-btn {
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
 }
 
 .choose-btn {
   background: var(--primary);
   color: white;
-  padding: 12px 24px;
-  font-size: 18px;
-  font-weight: 600;
+}
+
+.choose-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(90, 141, 196, 0.2);
 }
 
 .upload-btn {
   background: var(--accent);
   color: white;
-  padding: 12px 24px;
-  font-size: 18px;
-  font-weight: 600;
+}
+
+.upload-btn:hover {
+  background: #7db3e0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(139, 188, 232, 0.2);
 }
 
 .cancel-upload-btn {
   background: var(--muted-light);
   color: white;
-  padding: 12px 24px;
-  font-size: 18px;
-  font-weight: 600;
+}
+
+.cancel-upload-btn:hover {
+  background: #c8d2de;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(155, 166, 179, 0.2);
 }
 
 .drag-drop-area {
@@ -116,6 +166,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 30px;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.uploaded-file-row:hover {
+  background: var(--soft);
 }
 
 .file-name {
@@ -135,19 +191,25 @@
 .pending-badge {
   background: var(--warning);
   color: white;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: 999px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(221, 184, 120, 0.2);
 }
 
 .completed-badge {
   background: var(--success);
   color: white;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: 999px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(126, 179, 136, 0.2);
 }
 
 .file-action-buttons {
@@ -163,12 +225,25 @@
   background: transparent;
   color: var(--muted);
   font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 6px;
+  border-radius: 8px;
 }
 
-.view-btn:hover,
-.download-btn:hover,
+.view-btn:hover {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.download-btn:hover {
+  color: var(--accent);
+  background: #e5f0fb;
+}
+
 .remove-file-btn:hover {
-  color: var(--text);
+  color: var(--danger);
+  background: rgba(220, 139, 124, 0.1);
 }
 
 .empty-doc-text {
