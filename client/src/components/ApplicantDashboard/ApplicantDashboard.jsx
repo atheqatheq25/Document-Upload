@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 const ApplicantDashboard = () => {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
+  const mountedRef = useRef(true);
+  const abortControllerRef = useRef(new AbortController());
   const [searchTerm, setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showDocumentModal, setShowDocumentModal] = useState(false);
@@ -23,6 +25,7 @@ const ApplicantDashboard = () => {
   const [currentDocumentId, setCurrentDocumentId] = useState(null);
 
   useEffect(() => {
+    mountedRef.current = true;
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user?.email) {
         fetchApplicants(user.email);
@@ -31,7 +34,11 @@ const ApplicantDashboard = () => {
       }
     });
 
-    return unsubscribe;
+    return () => {
+      mountedRef.current = false;
+      abortControllerRef.current.abort();
+      unsubscribe();
+    };
   }, [navigate]);
 
   const normalizeFile = (file) => {
@@ -80,13 +87,17 @@ const ApplicantDashboard = () => {
         })
       );
 
-      setApplicants(applicantsWithDocuments);
-      if (!activeApplicantId && applicantsWithDocuments.length > 0) {
-        setActiveApplicantId(applicantsWithDocuments[0].id);
+      if (mountedRef.current) {
+        setApplicants(applicantsWithDocuments);
+        if (!activeApplicantId && applicantsWithDocuments.length > 0) {
+          setActiveApplicantId(applicantsWithDocuments[0].id);
+        }
       }
     } catch (error) {
-      console.error(error);
-      toast.error("❌ Unable to load applicants");
+      if (mountedRef.current) {
+        console.error(error);
+        toast.error("❌ Unable to load applicants");
+      }
     }
   };
 

@@ -37,12 +37,12 @@
 
 .document-box:hover {
   border-color: var(--primary);
-  box-shadow: 0 2px 8px rgba(107, 168, 224, 0.1);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
   transform: translateY(-2px);
 }
 
 .active-document-box {
-  box-shadow: 0 4px 16px rgba(107, 168, 224, 0.2);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25);
   border-color: var(--primary);
   background: var(--primary-light);
   color: var(--primary-dark);
@@ -77,12 +77,12 @@
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(107, 168, 224, 0.2);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
 }
 
 .add-document-side-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(107, 168, 224, 0.3);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
 }
 
 .documents-right-area {
@@ -138,9 +138,9 @@
 }
 
 .upload-btn:hover {
-  background: #7db3e0;
+  background: #3b82f6;
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(139, 188, 232, 0.2);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
 }
 
 .cancel-upload-btn {
@@ -149,9 +149,9 @@
 }
 
 .cancel-upload-btn:hover {
-  background: #c8d2de;
+  background: #d1d5db;
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(155, 166, 179, 0.2);
+  box-shadow: 0 4px 8px rgba(75, 85, 99, 0.2);
 }
 
 .drag-drop-area {
@@ -238,7 +238,7 @@
 
 .download-btn:hover {
   color: var(--accent);
-  background: #e5f0fb;
+  background: #dbeafe;
 }
 
 .remove-file-btn:hover {

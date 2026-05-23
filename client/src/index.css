@@ -2,21 +2,21 @@
 :root {
   --bg: #fcfdfe;
   --card: #ffffff;
-  --primary: #6ba8e0;
-  --primary-dark: #5a8dc4;
-  --primary-light: #e5f0fb;
-  --muted: #9ba6b3;
-  --muted-light: #d4dce5;
-  --danger: #dc8b7c;
-  --border: #e8ecf1;
-  --text: #2d3748;
-  --text-light: #879199;
-  --soft: #f8fafd;
-  --accent: #8fbce8;
-  --success: #7eb388;
-  --warning: #ddb878;
-  --shadow: 0 2px 8px rgba(45,55,72,0.05);
-  --shadow-md: 0 4px 16px rgba(45,55,72,0.08);
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #dbeafe;
+  --muted: #6b7280;
+  --muted-light: #e5e7eb;
+  --danger: #ef4444;
+  --border: #e5e7eb;
+  --text: #1f2937;
+  --text-light: #6b7280;
+  --soft: #f3f4f6;
+  --accent: #60a5fa;
+  --success: #16a34a;
+  --warning: #ea580c;
+  --shadow: 0 2px 8px rgba(31,41,55,0.1);
+  --shadow-md: 0 4px 16px rgba(31,41,55,0.12);
 }
 
 body {
@@ -65,7 +65,7 @@ body {
   border-radius: 10px;
   color: white;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(107, 168, 224, 0.2);
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.25);
 }
 
 .add-btn:hover,
@@ -99,7 +99,7 @@ body {
   border-radius: 14px;
   padding: 30px;
   border: 1px solid var(--border);
-  box-shadow: 0 8px 24px rgba(45,55,72,0.12);
+  box-shadow: 0 8px 24px rgba(31,41,55,0.15);
   animation: slideUp 0.3s ease;
 }
 
@@ -165,12 +165,13 @@ body {
 /* CANCEL BUTTON */
 
 .cancel-btn {
-  background: #94a3b8;
+  background: var(--muted-light);
   color: white;
   padding: 12px 28px;
   font-size: 18px;
   font-weight: 600;
   border-radius: 8px;
+  border: none;
 }
 
 /* APPLICANT TABS ROW */
@@ -195,7 +196,7 @@ body {
 /* ACTIVE TAB */
 
 .active-tab {
-  border-bottom: 2px solid #3b82f6;
+  border-bottom: 2px solid #1e40af;
 }
 
 /* NAME */
@@ -212,7 +213,7 @@ body {
   width: 60px;
   height: 60px;
   border: none;
-  background: var(--primary);
+  background: var(--danger);
   color: white;
   border-radius: 8px;
   font-size: 18px;
@@ -342,19 +343,21 @@ body {
 }
 
 .upload-btn {
-  background: #8fbafc;
+  background: var(--accent);
   color: white;
   padding: 12px 24px;
   font-size: 18px;
   font-weight: 600;
+  border: none;
 }
 
 .cancel-upload-btn {
-  background: #94a3b8;
+  background: var(--muted-light);
   color: white;
   padding: 12px 24px;
   font-size: 18px;
   font-weight: 600;
+  border: none;
 }
 
 /* DRAG AREA */
@@ -410,7 +413,7 @@ body {
 /* PENDING BADGE */
 
 .pending-badge {
-  background: #f97316;
+  background: #ea580c;
   color: white;
   padding: 4px 12px;
   border-radius: 999px;
@@ -452,10 +455,11 @@ body {
   width: 40px;
   height: 40px;
   border: none;
-  background: #3b82f6;
-  color: white;
+  background: transparent;
+  color: var(--primary);
   border-radius: 8px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 /* DOWNLOAD BUTTON */
@@ -464,10 +468,11 @@ body {
   width: 40px;
   height: 40px;
   border: none;
-  background: #22c55e;
-  color: white;
+  background: transparent;
+  color: var(--accent);
   border-radius: 8px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 /* COMPLETED BADGE */
@@ -495,8 +500,8 @@ body {
   width: 42px;
   height: 42px;
   border: none;
-  background: #3b82f6;
-  color: white;
+  background: transparent;
+  color: var(--primary);
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
@@ -508,8 +513,8 @@ body {
   width: 42px;
   height: 42px;
   border: none;
-  background: #22c55e;
-  color: white;
+  background: transparent;
+  color: var(--accent);
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
@@ -521,8 +526,8 @@ body {
   width: 42px;
   height: 42px;
   border: none;
-  background: #ef4444;
-  color: white;
+  background: transparent;
+  color: var(--danger);
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
@@ -531,15 +536,15 @@ body {
 /* ACTIVE DOCUMENT */
 
 .active-document {
-  border: 3px solid #2563eb;
+  border: 3px solid #1e40af;
 }
 
 /* ACTIVE DOCUMENT */
 
 .active-document-box {
-  border: 3px solid #2563eb;
+  border: 3px solid var(--primary);
   position: relative;
-  box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
   transform: scale(1.03);
 }
 
@@ -549,7 +554,7 @@ body {
   position: absolute;
   top: -12px;
   right: -12px;
-  background: #22c55e;
+  background: #16a34a;
   color: white;
   font-size: 10px;
   font-weight: bold;
@@ -562,13 +567,48 @@ body {
 .current-document-title {
   font-size: 22px;
   font-weight: 600;
-  color: #374151;
+  color: #111827;
   margin-bottom: 20px;
 }
 
 /* CURRENT DOCUMENT NAME */
 
 .current-document-name {
-  color: #2563eb;
+  color: var(--primary);
   margin-left: 10px;
+}
+
+/* BOOTSTRAP BUTTON OVERRIDES */
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark) !important;
+  border-color: var(--primary-dark) !important;
+}
+
+.btn-danger {
+  background-color: var(--danger) !important;
+  border-color: var(--danger) !important;
+  color: white !important;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626 !important;
+  border-color: #dc2626 !important;
+}
+
+.btn-secondary {
+  background-color: var(--muted) !important;
+  border-color: var(--muted) !important;
+  color: white !important;
+}
+
+.btn-secondary:hover {
+  background-color: #4b5563 !important;
+  border-color: #4b5563 !important;
 }
