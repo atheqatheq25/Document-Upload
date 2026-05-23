@@ -37,4 +37,52 @@
   color: white;
   font-weight: 600;
   cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.divider-line {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--muted);
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+.divider-line::before,
+.divider-line::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.divider-line::before {
+  margin-right: 10px;
+}
+
+.divider-line::after {
+  margin-left: 10px;
+}
+
+.google-btn {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.google-btn:hover {
+  background: var(--soft);
+  box-shadow: var(--shadow);
+}
+
+.google-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

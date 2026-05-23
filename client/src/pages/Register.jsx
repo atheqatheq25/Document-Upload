@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../firebase";
 import axios from "axios";
 import { API_BASE_URL } from "../api/apiClient";
 import { useNavigate } from "react-router-dom";
@@ -98,6 +98,30 @@ const Register = () => {
 
     };
 
+  // GOOGLE SIGNUP
+
+  const handleGoogleSignup = async () => {
+    try {
+      setLoading(true);
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+
+      await axios.post(`${API_BASE_URL}/register-user`, {
+        name: user.displayName || "Google User",
+        email: user.email,
+        firebase_uid: user.uid,
+      });
+
+      toast.success("✅ Registration with Google Successful");
+      setLoading(false);
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+      toast.error("❌ Google Registration Failed");
+    }
+  };
+
   return (
     <div className="auth-container">
       <div className="auth-card">
@@ -129,6 +153,12 @@ const Register = () => {
 
         <button className="auth-button" onClick={handleRegister}>
           {loading ? "Registering..." : "Register"}
+        </button>
+
+        <div className="divider-line">Or</div>
+
+        <button className="google-btn" onClick={handleGoogleSignup} disabled={loading}>
+          {loading ? "Signing up..." : "🔍 Sign up with Google"}
         </button>
       </div>
     </div>
