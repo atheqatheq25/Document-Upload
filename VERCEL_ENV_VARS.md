@@ -1,7 +1,7 @@
 # Production Environment Variables for Vercel
 # Copy these to your Vercel project settings
 
-VITE_API_URL=https://document-upload-1-hvgx.onrender.com
+VITE_API_URL=https://document-upload-nldn.onrender.com
 VITE_FIREBASE_API_KEY=AIzaSyCPwRRAdYpc54O1QHZIm2RntNHxETZK01s
 VITE_FIREBASE_AUTH_DOMAIN=document-upload-75f50.firebaseapp.com
 VITE_FIREBASE_PROJECT_ID=document-upload-75f50

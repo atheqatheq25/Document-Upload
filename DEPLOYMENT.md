@@ -30,7 +30,7 @@ This guide addresses the three main deployment errors:
 
 4. **Update your frontend `.env.local` with the backend URL:**
    ```
-   VITE_API_URL=https://your-backend-url.onrender.com
+   VITE_API_URL=https://document-upload-nldn.onrender.com
    ```
 
 ---
@@ -77,7 +77,7 @@ VITE_FIREBASE_APP_ID=your_app_id
    - Add new variable:
      ```
      Name: VITE_API_URL
-     Value: https://your-backend-url.onrender.com
+     Value: https://document-upload-nldn.onrender.com
      ```
 
 2. **Redeploy after adding environment variable:**
