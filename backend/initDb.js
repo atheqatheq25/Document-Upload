@@ -53,8 +53,10 @@ const initializeDatabase = async () => {
     console.log("✓ Uploaded files table created");
 
     console.log("✅ Database initialization complete!");
+    return true;
   } catch (error) {
-    console.error("❌ Database initialization error:", error);
+    console.error("❌ Database initialization error:", error.message);
+    throw error;
   }
 };
 

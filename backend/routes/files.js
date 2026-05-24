@@ -30,8 +30,8 @@ router.post("/upload-file", upload.single("file"), async (req, res) => {
       file: result.rows[0],
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "❌ Server Error" });
+    console.error("❌ Error uploading file:", error.message);
+    res.status(500).json({ error: "❌ Server Error", details: error.message });
   }
 });
 
@@ -44,8 +44,8 @@ router.get("/get-files/:documentId", async (req, res) => {
     );
     res.status(200).json(result.rows);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "❌ Server Error" });
+    console.error("❌ Error fetching files:", error.message);
+    res.status(500).json({ error: "❌ Server Error", details: error.message });
   }
 });
 

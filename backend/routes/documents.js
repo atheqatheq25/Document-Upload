@@ -23,8 +23,8 @@ router.post("/add-document", async (req, res) => {
       document: result.rows[0],
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "❌ Server Error" });
+    console.error("❌ Error adding document:", error.message);
+    res.status(500).json({ error: "❌ Server Error", details: error.message });
   }
 });
 
@@ -37,8 +37,8 @@ router.get("/get-documents/:applicantId", async (req, res) => {
     );
     res.status(200).json(result.rows);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "❌ Server Error" });
+    console.error("❌ Error fetching documents:", error.message);
+    res.status(500).json({ error: "❌ Server Error", details: error.message });
   }
 });
 
@@ -48,8 +48,8 @@ router.delete("/delete-document/:id", async (req, res) => {
     await pool.query("DELETE FROM documents WHERE id = $1", [id]);
     res.status(200).json({ message: "🗑 Document Deleted Successfully" });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "❌ Server Error" });
+    console.error("❌ Error deleting document:", error.message);
+    res.status(500).json({ error: "❌ Server Error", details: error.message });
   }
 });
 

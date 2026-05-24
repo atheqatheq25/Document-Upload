@@ -67,10 +67,25 @@ app.use("/", usersRouter);
 
 // Initialize database and start server
 initializeDatabase().then(() => {
-  app.listen(PORT, () => {
+  const server = app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
   });
+
+  // Handle server errors
+  server.on("error", (error) => {
+    console.error("❌ Server error:", error);
+  });
 }).catch((error) => {
-  console.error("❌ Failed to initialize database:", error);
+  console.error("❌ Failed to initialize database:", error.message);
   process.exit(1);
+});
+
+// Handle uncaught exceptions
+process.on("uncaughtException", (error) => {
+  console.error("❌ Uncaught exception:", error.message);
+});
+
+// Handle unhandled promise rejections
+process.on("unhandledRejection", (error) => {
+  console.error("❌ Unhandled rejection:", error.message);
 });

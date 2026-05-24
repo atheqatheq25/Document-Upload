@@ -21,8 +21,8 @@ router.post("/add-applicant", async (req, res) => {
       applicant: result.rows[0],
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "❌ Server Error" });
+    console.error("❌ Error adding applicant:", error.message);
+    res.status(500).json({ error: "❌ Server Error", details: error.message });
   }
 });
 
@@ -31,8 +31,8 @@ router.get("/get-applicants", async (req, res) => {
     const result = await pool.query("SELECT * FROM applicants ORDER BY id DESC");
     res.status(200).json(result.rows);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "❌ Server Error" });
+    console.error("❌ Error fetching all applicants:", error.message);
+    res.status(500).json({ error: "❌ Server Error", details: error.message });
   }
 });
 
@@ -45,8 +45,8 @@ router.get("/get-applicants/:email", async (req, res) => {
     );
     res.status(200).json(result.rows);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "❌ Server Error" });
+    console.error("❌ Error fetching applicants:", error.message);
+    res.status(500).json({ error: "❌ Server Error", details: error.message });
   }
 });
 
