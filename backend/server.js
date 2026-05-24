@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
+require("dotenv").config();
 
 const applicantsRouter = require("./routes/applicants");
 const documentsRouter = require("./routes/documents");
@@ -9,16 +10,13 @@ const filesRouter = require("./routes/files");
 const usersRouter = require("./routes/users");
 
 const app = express();
-const PORT = 5000;
-const NODE_ENV = "production";
+const PORT = process.env.PORT || 5000;
 const FRONTEND_URL = "https://document-upload-silk.vercel.app";
 
 // Log environment configuration for debugging
 console.log("=== Server Configuration ===");
-console.log(`NODE_ENV: ${NODE_ENV}`);
 console.log(`PORT: ${PORT}`);
-console.log(`Database Host: localhost`);
-console.log(`Database Name: document_upload_db`);
+console.log(`Database: Render PostgreSQL`);
 console.log(`Frontend URL (CORS): ${FRONTEND_URL}`);
 console.log("===========================\n");
 
