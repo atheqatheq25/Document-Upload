@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
-require("dotenv").config();
 
 const applicantsRouter = require("./routes/applicants");
 const documentsRouter = require("./routes/documents");
@@ -10,15 +9,17 @@ const filesRouter = require("./routes/files");
 const usersRouter = require("./routes/users");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
+const NODE_ENV = "production";
+const FRONTEND_URL = "https://document-upload-silk.vercel.app";
 
 // Log environment configuration for debugging
 console.log("=== Server Configuration ===");
-console.log(`NODE_ENV: ${process.env.NODE_ENV || "production"}`);
+console.log(`NODE_ENV: ${NODE_ENV}`);
 console.log(`PORT: ${PORT}`);
-console.log(`Database Host: ${process.env.DB_HOST || "localhost"}`);
-console.log(`Database Name: ${process.env.DB_NAME || "document_upload_db"}`);
-console.log(`Frontend URL (CORS): ${process.env.FRONTEND_URL || "Not set (development mode)"}`);
+console.log(`Database Host: localhost`);
+console.log(`Database Name: document_upload_db`);
+console.log(`Frontend URL (CORS): ${FRONTEND_URL}`);
 console.log("===========================\n");
 
 // CORS configuration - dynamically build allowed origins
@@ -29,12 +30,8 @@ const allowedOrigins = [
   "http://localhost:5175",
   "http://127.0.0.1:3000",
   "http://127.0.0.1:5173",
+  FRONTEND_URL,
 ];
-
-// Add frontend URL from environment if provided (for production)
-if (process.env.FRONTEND_URL) {
-  allowedOrigins.push(process.env.FRONTEND_URL);
-}
 
 app.use(cors({
   origin: (origin, callback) => {
