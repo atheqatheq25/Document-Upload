@@ -2,6 +2,9 @@ const pool = require("./db");
 
 const initializeDatabase = async () => {
   try {
+    // Give pool time to initialize connection
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
     console.log("Initializing database tables...");
 
     // Create users table
@@ -55,7 +58,8 @@ const initializeDatabase = async () => {
     console.log("✅ Database initialization complete!");
     return true;
   } catch (error) {
-    console.error("❌ Database initialization error:", error.message);
+    console.error("❌ Database initialization error:", error.message || error);
+    console.error("   Stack trace:", error.stack);
     throw error;
   }
 };

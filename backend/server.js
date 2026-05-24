@@ -12,13 +12,14 @@ const initializeDatabase = require("./initDb");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const FRONTEND_URL = "https://document-upload-silk.vercel.app";
+const FRONTEND_URL = process.env.FRONTEND_URL || "https://document-upload-silk.vercel.app";
 
 // Log environment configuration for debugging
 console.log("=== Server Configuration ===");
 console.log(`PORT: ${PORT}`);
 console.log(`Database: Render PostgreSQL`);
 console.log(`Frontend URL (CORS): ${FRONTEND_URL}`);
+console.log(`Node Environment: ${process.env.NODE_ENV || 'development'}`);
 console.log("===========================\n");
 
 // CORS configuration - dynamically build allowed origins
